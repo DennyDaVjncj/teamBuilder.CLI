@@ -11,10 +11,10 @@ class Letter {
   //    because we call this function toString, when we call `this.letters.join` in
   //    Word.js, JavaScript automatically uses the value we return here
   toString() {
-    if (this.visible === true) {
-      return this.char;
+    if (this.visible === true) {//condition for UX
+      return this.char;//statement for programmatic purpose
     }
-    return "_";
+    return "_";//return statements are more programmatic than user interfacey
   }
 
   getSolution() {
