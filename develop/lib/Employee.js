@@ -22,6 +22,6 @@ class Employee{//this class needs to set some base values
     
 }
 
-exports.module=Employee;//can be instantiated
+module.exports=Employee;//can be instantiated
 
 //this file serves to support instances thereof. never to be redered
