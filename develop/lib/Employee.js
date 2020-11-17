@@ -4,27 +4,24 @@ class Employee{//this class needs to set some base values
     constructor(name,id,email){
         this.name=name;//second test passed
         this.id=id;
-        this.eMail=email;
-    }
+        this.email=email;
+    }//this class will be extended
+
     getName(){
         // this.name=`${data.name}`;//'data' being a hypothetical anchor value
-        // console.log(this.name);
-        return Employee()//this line passes test
+        // console.log(this.name);             
+        return `${this.name}`//this line passes test
     }
     getId(){
-        return Employee(this.id)
+        return `${this.id}`;
     }
     getEmail(){
         
+        return `${this.email}`;
     }
     
 }
 
 exports.module=Employee;//can be instantiated
-
-'commitMessage=can be instantiated'
-
-
-
 
 //this file serves to support instances thereof. never to be redered
