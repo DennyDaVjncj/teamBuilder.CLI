@@ -2,22 +2,27 @@
 
 class Employee{//this class needs to set some base values
     constructor(name,id,email){
-        this.name=name;//second test passed
-        this.id=id;
+        this.name=name;
+        this.id=id;//value must be a digit
         this.email=email;
     }//this class will be extended
 
-    getName(){
-        // this.name=`${data.name}`;//'data' being a hypothetical anchor value
-        // console.log(this.name);             
-        return `${this.name}`//this line passes test
+    getName(){                 
+        return `${this.name}`;//this line passes test
     }
     getId(){
-        return `${this.id}`;
-    }
-    getEmail(){
         
+        // let mutantId=this.id;
+        // if(typeof mutantId===""){
+        //     Number(`${this.id}`);
+        // }
+        return this.id;
+    }
+    getEmail(){        
         return `${this.email}`;
+    }
+    getRole(){
+        return `${Employee}`;
     }
     
 }
