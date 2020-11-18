@@ -8,7 +8,7 @@ class Employee{//this class needs to set some base values
     }//this class will be extended
 
     getName(){                 
-        return `${this.name}`;//this line passes test
+        return this.name;//this line passes test
     }
     getId(){
         
@@ -22,7 +22,7 @@ class Employee{//this class needs to set some base values
         return `${this.email}`;
     }
     getRole(){
-        return `${Employee}`;
+        return 'Employee';
     }
     
 }
