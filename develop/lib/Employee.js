@@ -7,19 +7,14 @@ class Employee{//this class needs to set some base values
         this.email=email;
     }//this class will be extended
 
-    getName(){                 
+    getName(){ 
         return this.name;//this line passes test
     }
-    getId(){
-        
-        // let mutantId=this.id;
-        // if(typeof mutantId===""){
-        //     Number(`${this.id}`);
-        // }
+    getId(){        
         return this.id;
     }
     getEmail(){        
-        return `${this.email}`;
+        return this.email;
     }
     getRole(){
         return 'Employee';
