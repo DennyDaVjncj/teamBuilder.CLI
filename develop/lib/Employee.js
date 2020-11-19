@@ -1,6 +1,6 @@
 // TODO: Write code to define and export the Employee class
 
-class Employee{//this class needs to set some base values
+class Employee{
     constructor(name,id,email){
         this.name=name;
         this.id=id;//value must be a digit
@@ -8,7 +8,7 @@ class Employee{//this class needs to set some base values
     }//this class will be extended
 
     getName(){ 
-        return this.name;//this line passes test
+        return this.name;
     }
     getId(){        
         return this.id;
@@ -18,8 +18,7 @@ class Employee{//this class needs to set some base values
     }
     getRole(){
         return 'Employee';
-    }
-    
+    }    
 }
 
 module.exports=Employee;//can be instantiated
