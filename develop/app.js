@@ -5,7 +5,6 @@ const inquire = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 // const mdGenPro=require('')//cli README.md-genPro, software I wrote for last assignment
-
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
@@ -15,15 +14,19 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-const promptUser=()=>inquire.prompt([
+const firstHire=()=>inquire.prompt([
     {
         type:'list',
         name:'config',
-        message:'whats the first position you would like to fill?',
+        message:'would you like to fill your Manager slot',
         choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
-    }    
-]);
-promptUser();
+    }   
+]).then(val=>{
+    if(val.config){
+        
+    }
+})
+firstHire();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
