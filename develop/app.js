@@ -1,3 +1,4 @@
+const Employee=require("./lib/Employee")
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -6,27 +7,43 @@ const path = require("path");
 const fs = require("fs");
 // const mdGenPro=require('')//cli README.md-genPro, software I wrote for last assignment
 const OUTPUT_DIR = path.resolve(__dirname, "output");
+console.log(OUTPUT_DIR);
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
 //
 
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-const firstHire=()=>inquire.prompt([
+const consfigureTeam=()=>inquire.prompt([
     {
-        type:'list',
+        type:'confirm',
         name:'config',
-        message:'would you like to fill your Manager slot',
-        choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
-    }   
+        message:'would you like to begin putting your software-development team together?'
+        //choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
+    }.then((yes,nah)=>{
+        console.log(yes);
+        if(yes){
+            
+        }
+    })
+    // {
+    //     type:'list',
+    //     name:'config',
+    //     message:'would you like to fill your Manager role',
+    //     choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
+    // }
 ]).then(val=>{
     if(val.config){
-        
+        return Manager;//if user wants to fill position, generate output
+        render
+        //create chain of conditions for seemless experience in configuration of team
+        //pull specific data for specific positions
     }
 })
-firstHire();
+consfigureTeam();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
