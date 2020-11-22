@@ -1,14 +1,15 @@
-const Employee=require("./lib/Employee")
+// const Employee=require("./lib/Employee")
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquire = require("inquirer");
-const path = require("path");
+const path = require("path");//is an object
 const fs = require("fs");
 // const mdGenPro=require('')//cli README.md-genPro, software I wrote for last assignment
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 console.log(OUTPUT_DIR);
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+const outputPath = path.join(OUTPUT_DIR, "team.html");//I want to generate 'output' through here
+//do I have to create a team.html?
 
 const render = require("./lib/htmlRenderer");
 
@@ -17,33 +18,45 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-const consfigureTeam=()=>inquire.prompt([
+const configureTeam=()=>inquire.prompt([
     {
-        type:'confirm',
-        name:'config',
-        message:'would you like to begin putting your software-development team together?'
-        //choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
-    }.then((yes,nah)=>{
-        console.log(yes);
-        if(yes){
-            
-        }
-    })
-    // {
-    //     type:'list',
-    //     name:'config',
-    //     message:'would you like to fill your Manager role',
-    //     choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
-    // }
+        type:'input',
+        name:'managerName',
+        message:"what is your Manager's name?"
+    },
+    {
+        type:'input',
+        name:'managerEmail',
+        message:"what is your manager's email?"
+    },
+    {
+        type:'input',
+        name:'managerId',
+        message:"what is your Manager's id?"
+    },
+    {
+        type:'input',
+        name:'managerOfficeNum',
+        message:"what is your Manager's office number?"
+    }    
 ]).then(val=>{
-    if(val.config){
-        return Manager;//if user wants to fill position, generate output
-        render
-        //create chain of conditions for seemless experience in configuration of team
-        //pull specific data for specific positions
-    }
-})
-consfigureTeam();
+    console.log(val)
+    //take those res's then pull them into a rendered file, targeting specific properties
+    const manager=new Manager(val.managerName,val.managerId,val.managerEmail,val.managerOfficeNum)//how I will create each employee
+    console.log(manager);
+    //ask user if the wanna add new employee
+    //if yes, ask engineer||intern
+        //if they want engineer, source appropiate info
+        //if they want intern, source info
+            
+        //if no, render array of defined employees
+        //
+    
+})  
+configureTeam();
+
+//     choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
+// }
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
