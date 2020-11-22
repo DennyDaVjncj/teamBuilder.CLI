@@ -21,42 +21,40 @@ const render = require("./lib/htmlRenderer");
 const configureTeam=()=>inquire.prompt([
     {
         type:'input',
-        name:'managerName',
+        name:'name',
         message:"what is your Manager's name?"
     },
     {
         type:'input',
-        name:'managerEmail',
+        name:'email',
         message:"what is your manager's email?"
     },
     {
         type:'input',
-        name:'managerId',
+        name:'id',
         message:"what is your Manager's id?"
     },
     {
         type:'input',
-        name:'managerOfficeNum',
+        name:'officeNum',
         message:"what is your Manager's office number?"
     }    
 ]).then(val=>{
     console.log(val)
     //take those res's then pull them into a rendered file, targeting specific properties
-    const manager=new Manager(val.managerName,val.managerId,val.managerEmail,val.managerOfficeNum)//how I will create each employee
+    const manager=new Manager(val.name,val.id,val.email,val.officeNum)//how I will create each employee
     console.log(manager);
     //ask user if the wanna add new employee
     //if yes, ask engineer||intern
         //if they want engineer, source appropiate info
         //if they want intern, source info
             
-        //if no, render array of defined employees
-        //
-    
+        //if no, render array of defined employees    
 })  
 configureTeam();
 
 //     choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
-// }
+// } //this can be used when asking user whih position they want filled next
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
