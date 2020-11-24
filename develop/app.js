@@ -22,7 +22,7 @@ const teamHtmlArr=[];
 
 //this function being stored within a variable can be instantiated. just a thought
 
-() => inquire.prompt([
+var configureManager=() => inquire.prompt([
     {
         type: 'input',
         name: 'name',
@@ -48,9 +48,9 @@ const teamHtmlArr=[];
     const manager = new Manager(configuration.name, configuration.id, configuration.email, configuration.officeNum)//new instantiation
     console.log(manager);
     teamHtmlArr.push(configuration);
-    addTeamMember()//hoisted function
-    
-    //ask user if the wanna add new employee
+    addTeamMember()//hoisted function   
+})
+
 function addTeamMember(){
     inquire.prompt([
         {
@@ -62,7 +62,7 @@ function addTeamMember(){
     ]).then(function(newHire){
         switch(newHire){
             case 'intern':
-                configureIntern();
+                configureIntern();//function prompting for intern config
                 break;
             case 'engineer':
                 configureEngineer();//hoisted functions
@@ -73,11 +73,6 @@ function addTeamMember(){
         
     })
 }
-    //if yes, ask engineer||intern
-    //if they want engineer, source appropiate info
-    //if they want intern, source info
-    //if no, render array of defined employees
-})
 
 
 
