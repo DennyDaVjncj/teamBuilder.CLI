@@ -45,13 +45,76 @@ var configureManager=() => inquire.prompt([
     }
 ]).then(configuration => {
     console.log(configuration)    
-    const manager = new Manager(configuration.name, configuration.id, configuration.email, configuration.officeNum)//new instantiation
-    console.log(manager);
+    const newManager = new Manager(configuration.name, configuration.id, configuration.email, configuration.officeNum)//new instantiation
+    console.log(newManager);
     teamHtmlArr.push(configuration);
     addTeamMember()//hoisted function   
 })
 
-function addTeamMember(){
+const configureIntern=()=>{
+    inquire.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "what is your interns's name?"
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "what is your intern's id?"
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "what is your intern's email?"
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: "what school does your intern attend?"
+        }
+    ]).then(configuration=>{
+        console.log(configuration);
+        const newIntern=new Intern(configuration.name,configuration.id,configuration.email,configuration.shool);
+        console.log(newIntern);
+        teamHtmlArr.push(newIntern);//compiling team.html
+        addTeamMember();//hoisted function
+    })
+}
+
+const configureEngineer=()=>{
+    inquire.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "what is your Manager's name?"
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "what is your engineer's id?"
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: "what is your engineer's email?"
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: "what is your engineer's github?"
+        }
+    ]).then(configuration=>{
+        console.log(configurataion);
+        const newEngineer=new Engineer(configuration.name,configuration.id,configuration.email,configuration.github);
+        console.log(newEngineer);
+        teamHtmlArr.push(newEngineer);
+        console.log(teamHtmlArr);//taking a look at this array of objects
+        addTeamMember();//hoisted function
+    })
+}
+
+function hireEmployee(){
     inquire.prompt([
         {
             type:'list',
@@ -68,20 +131,9 @@ function addTeamMember(){
                 configureEngineer();//hoisted functions
                 break;
             default:
-                return 'html output'        
+                render(teamHtmlArr)        
     }
-})
-
-
-
-
-
-
-
-
-
-//     choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
-// } //this can be used when asking user whih position they want filled next
+})//this function will server as an anchor, continuing the flow until user reaches end
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -101,4 +153,4 @@ function addTeamMember(){
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+// for the provided render function to work
