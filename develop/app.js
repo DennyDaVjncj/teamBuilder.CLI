@@ -11,47 +11,80 @@ console.log(OUTPUT_DIR);
 const outputPath = path.join(OUTPUT_DIR, "team.html");//I want to generate 'output' through here
 //do I have to create a team.html?
 
-const render = require("./lib/htmlRenderer");
+const render = require("./lib/htmlRenderer");//whats the best way to use this module?
+const teamHtmlArr=[];
 
 //
 
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-const configureTeam=()=>inquire.prompt([
+
+//this function being stored within a variable can be instantiated. just a thought
+
+() => inquire.prompt([
     {
-        type:'input',
-        name:'name',
-        message:"what is your Manager's name?"
+        type: 'input',
+        name: 'name',
+        message: "what is your Manager's name?"
     },
     {
-        type:'input',
-        name:'email',
-        message:"what is your manager's email?"
+        type: 'input',
+        name: 'email',
+        message: "what is your manager's email?"
     },
     {
-        type:'input',
-        name:'id',
-        message:"what is your Manager's id?"
+        type: 'input',
+        name: 'id',
+        message: "what is your Manager's id?"
     },
     {
-        type:'input',
-        name:'officeNum',
-        message:"what is your Manager's office number?"
-    }    
-]).then(val=>{
-    console.log(val)
-    //take those res's then pull them into a rendered file, targeting specific properties
-    const manager=new Manager(val.name,val.id,val.email,val.officeNum)//how I will create each employee
+        type: 'input',
+        name: 'officeNum',
+        message: "what is your Manager's office number?"
+    }
+]).then(configuration => {
+    console.log(configuration)    
+    const manager = new Manager(configuration.name, configuration.id, configuration.email, configuration.officeNum)//new instantiation
     console.log(manager);
+    teamHtmlArr.push(configuration);
+    addTeamMember()//hoisted function
+    
     //ask user if the wanna add new employee
+function addTeamMember(){
+    inquire.prompt([
+        {
+            type:'list',
+            name:'newHire',
+            message:'would you like to hire a new employee?',
+            choices:['intern','engineer','none']
+        }
+    ]).then(function(newHire){
+        switch(newHire){
+            case 'intern':
+                configureIntern();
+                break;
+            case 'engineer':
+                configureEngineer();//hoisted functions
+                break;
+            default:
+                return 'not done yet'   
+        }
+        
+    })
+}
     //if yes, ask engineer||intern
-        //if they want engineer, source appropiate info
-        //if they want intern, source info
-            
-        //if no, render array of defined employees    
-})  
-configureTeam();
+    //if they want engineer, source appropiate info
+    //if they want intern, source info
+    //if no, render array of defined employees
+})
+
+
+
+
+
+
+
 
 //     choices:['Manager','Engineer','Intern']//target this. for dynamic generation | create new instance of promptUser/inquire
 // } //this can be used when asking user whih position they want filled next
