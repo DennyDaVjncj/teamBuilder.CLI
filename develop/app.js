@@ -59,7 +59,7 @@ function addTeamMember(){
             message:'would you like to hire a new employee?',
             choices:['intern','engineer','none']
         }
-    ]).then(function(newHire){
+    ]).then(newHire=>{
         switch(newHire){
             case 'intern':
                 configureIntern();//function prompting for intern config
@@ -68,11 +68,10 @@ function addTeamMember(){
                 configureEngineer();//hoisted functions
                 break;
             default:
-                return 'not done yet'   
-        }
-        
-    })
-}
+                return 'html output'        
+    }
+})
+
 
 
 
