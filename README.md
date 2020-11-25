@@ -1,6 +1,6 @@
 
   
-  # ```teamBuilder.CLI```
+  # ```teamBuilder.CLI: ```
 
   # Description:
   A command-line application allowing users to dynamically generate team profiles to client
