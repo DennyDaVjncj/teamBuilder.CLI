@@ -3,7 +3,7 @@
   # ```teamBuilder.CLI```
 
   # Description:
-  ```A command-line application allowing users to dynamically generate team profiles to client
+  A command-line application allowing users to dynamically generate team profiles to client
 
   # Table of Contents:
   - [Description](#description)
@@ -13,7 +13,7 @@
   - [How to Contribute to this App](#contribution-Guidlines)
   - [Tests](#how-to-run-tests)
   - [Questions](#questions)
-  ```
+  
   # Installation Guidlines:
   `Require app, run 'npm i [requirment]'`
 
