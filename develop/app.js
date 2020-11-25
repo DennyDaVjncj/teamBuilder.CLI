@@ -22,7 +22,7 @@ const teamHtmlArr=[];
 
 //this function being stored within a variable can be instantiated. just a thought
 
-var configureManager=() => inquire.prompt([
+const configureManager=() => inquire.prompt([
     {
         type: 'input',
         name: 'name',
@@ -47,8 +47,8 @@ var configureManager=() => inquire.prompt([
     console.log(configuration)    
     const newManager = new Manager(configuration.name, configuration.id, configuration.email, configuration.officeNum)//new instantiation
     console.log(newManager);
-    teamHtmlArr.push(configuration);
-    addTeamMember()//hoisted function   
+    teamHtmlArr.push(newManager);
+    hireEmployee()//hoisted function   
 })
 
 const configureIntern=()=>{
@@ -75,10 +75,10 @@ const configureIntern=()=>{
         }
     ]).then(configuration=>{
         console.log(configuration);
-        const newIntern=new Intern(configuration.name,configuration.id,configuration.email,configuration.shool);
+        const newIntern=new Intern(configuration.name,configuration.id,configuration.email,configuration.school);
         console.log(newIntern);
         teamHtmlArr.push(newIntern);//compiling team.html
-        addTeamMember();//hoisted function
+        hireEmployee();//hoisted function
     })
 }
 
@@ -105,12 +105,12 @@ const configureEngineer=()=>{
             message: "what is your engineer's github?"
         }
     ]).then(configuration=>{
-        console.log(configurataion);
+        console.log(configuration);
         const newEngineer=new Engineer(configuration.name,configuration.id,configuration.email,configuration.github);
         console.log(newEngineer);
         teamHtmlArr.push(newEngineer);
         console.log(teamHtmlArr);//taking a look at this array of objects
-        addTeamMember();//hoisted function
+        hireEmployee();//hoisted function
     })
 }
 
@@ -122,8 +122,8 @@ function hireEmployee(){
             message:'would you like to hire a new employee?',
             choices:['intern','engineer','none']
         }
-    ]).then(newHire=>{
-        switch(newHire){
+    ]).then(configuration=>{
+        switch(configuration.newHire){
             case 'intern':
                 configureIntern();//function prompting for intern config
                 break;
@@ -131,9 +131,17 @@ function hireEmployee(){
                 configureEngineer();//hoisted functions
                 break;
             default:
-                render(teamHtmlArr)        
-    }
-})//this function will server as an anchor, continuing the flow until user reaches end
+                fs.writeFile(outputPath,render(teamHtmlArr),error=>{
+                    if(error){
+                        throw error
+                    }
+                });
+        }                
+    })
+}//this function will server as an anchor, continuing the flow until user reaches end
+
+configureManager()//application trigger
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
