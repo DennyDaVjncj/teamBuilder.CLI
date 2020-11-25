@@ -2,6 +2,7 @@
 
   # Description:
   A command-line application allowing users to dynamically generate team profiles to client
+  ![Screenshot (219)](https://user-images.githubusercontent.com/62162419/100260010-ed2f0600-2f16-11eb-86b1-73eb5d5a9f61.png)
 
   # Table of Contents:
   - [Description](#description)
