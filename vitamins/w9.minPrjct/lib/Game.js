@@ -8,7 +8,7 @@ const words = require("./words");
 class Game {
   // Save a reference for `this` in `this` as `this` will change inside of inquirer
   constructor() {
-    this.guessesLeft = 0;
+    this.guessesLeft = 0;    
   }
   // Sets the guesses to 10 and gets the next word
   play() {
@@ -19,7 +19,7 @@ class Game {
   // Creates a new Word object using a random word from the array, asks the user for their guess
   nextWord() {
     const randWord = words[Math.floor(Math.random() * words.length)];
-    this.currentWord = new Word(randWord);
+    this.currentWord = new Word(randWord);//does this line require the Word file to be filledout
     console.log("\n" + this.currentWord + "\n");
     this.makeGuess();
   }
